@@ -1,9 +1,11 @@
+import { Login } from "./Pages/Login";
 
 
 function App() {
   return (
     <div >
-      <h1>MicroMercado</h1>
+      
+      <Login />
     </div>
   );
 }
