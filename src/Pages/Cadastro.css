@@ -1,0 +1,48 @@
+.cadastroPage {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #483D8B;
+}
+
+.cadastroWrapper {
+  width: 55%;
+  height: 70%;
+  background-color: #DCDCDC;
+  border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.inputsWrapper {
+  display: flex;
+  /* flex: 1; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 80%;
+}
+
+.cadastroButton{
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #24a0ed;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+.cadastroButton:hover{
+  opacity: 1;
+}

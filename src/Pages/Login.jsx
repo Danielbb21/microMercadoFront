@@ -15,7 +15,7 @@ export const Login = () => {
             <Input text={'Digite sua Senha'} type={'password'} />
             <button type='submit' className='loginButton'>Login</button>
           </form>
-          <p>Não tem conta? <a href=''>Cadastre-se Aqui</a></p>
+          <p>Não tem conta? <a href='/cadastro'>Cadastre-se Aqui</a></p>
         </div>
       </div>
     </>
