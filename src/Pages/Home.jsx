@@ -7,15 +7,25 @@ export const Home = () => {
   return (
     <>
     <Navbar />
-      <h1>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+      <hr/>
+      <br/>
       <table>
         <tr>
           <th>
-            <img src={Logo} className="logo" alt="Logo do site" />
-            <div>Por: 150 R$</div>
+            <img src={Logo} className="imageProduct" alt="Logo do site" />
+            <div className="nameProduct">PRODUTO</div>
+            <div className="priceProduct">Por: R$150 </div>
           </th>
-          <th>a</th>
-          <th>a</th>
+          <th>
+            <img src={Logo} className="imageProduct" alt="Logo do site" />
+            <div className="nameProduct">PRODUTO</div>
+            <div className="priceProduct">Por: R$150 </div>
+          </th>
+          <th>
+            <img src={Logo} className="imageProduct" alt="Logo do site" />
+            <div className="nameProduct">PRODUTO</div>
+            <div className="priceProduct">Por: R$150 </div>
+          </th>
         </tr>
       </table>
     </>
