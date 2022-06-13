@@ -40,4 +40,20 @@ table {
     font-weight: 500;
     text-align: left;
     margin: 25px;
+  
+  
+}
+
+.comprarButton{
+  width: 60%;
+  height: 50px;
+  margin-left: 3%;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  background-color: #212121;
+  color: #cccccc;
+  font-size: 20px;
+  opacity: 0.8;
+  transition: 0.3s;
 }
