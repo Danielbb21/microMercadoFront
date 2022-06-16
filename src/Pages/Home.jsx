@@ -1,7 +1,9 @@
+import {useState} from 'react';
 import { Navbar } from "../Components/Navbar";
 import Logo from '../Assets/MM.png'
 import '../Components/home.css';
 import { Products } from "../Components/Products";
+import CompraModal from '../Components/CompraModal';
 
 const Data = [{
   id: 1,
@@ -34,25 +36,26 @@ const Data = [{
   preco:'Por: R$150'
 },
 {
-  id: 5,
+  id: 8,
   image: Logo,
   name: 'teste',
   preco:'Por: R$150'
 },
 {
-  id: 5,
+  id: 6,
   image: Logo,
   name: 'teste',
   preco:'Por: R$150'
 },
 {
-  id: 5,
+  id: 7,
   image: Logo,
   name: 'teste',
   preco:'Por: R$150'
 },
 ]
 export const Home = () => {
+  
   return (
     <>
     <Navbar />
@@ -63,7 +66,7 @@ export const Home = () => {
           {Data.map(d => {
             return (
                 
-                <Products  logo = {d.image} name={d.name} value={d.preco} key = {d.id}/>
+                <Products  logo = {d.image} name={d.name} value={d.preco} key = {d.id} id={d.id}/>
               
             )
           })}

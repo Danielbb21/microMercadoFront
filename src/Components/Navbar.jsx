@@ -12,7 +12,7 @@ export const Navbar = () => {
     <>
       <div className='navWrapper'>
         <div style={{display: 'flex', alignItems: 'center'}}>
-         <img src={Logo} alt="Logo do site" className='logo' />
+         <img src={Logo} alt="Logo do site" className='logo'  onClick={() => navigate('/')}/>
          <div style={{color: 'white', marginLeft: '15px', fontWeight: 'bold', fontSize: '32px'}}>Micro Mercado</div>
         </div>
         <form style={{ height: '50%', width: '30%', display: 'flex'}} onSubmit={handleSubmit}>
