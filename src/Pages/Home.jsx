@@ -57,13 +57,14 @@ export const Home = () => {
     <>
     <Navbar />
       <br/>
-      
-          <div style={{display: 'flex',  flexWrap: 'wrap', width: '100%', justifyContent:'space-evenly'}}>
+          <h1 style={{textAlign: 'center'}}>PRODUTOS</h1>
+          <hr style={{width: '50%'}}/>
+          <div style={{display: 'flex',  flexWrap: 'wrap', width: '80%', margin:'auto', justifyContent:'space-evenly'}}>
           {Data.map(d => {
             return (
-              // <th>
+                
                 <Products  logo = {d.image} name={d.name} value={d.preco} key = {d.id}/>
-              // </th>
+              
             )
           })}
           </div>

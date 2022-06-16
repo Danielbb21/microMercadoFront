@@ -11,7 +11,7 @@ export const Products  = (props) => {
                 <div className="nameProduct">{props.name}</div>
                 <div className="priceProduct">{props.value} </div>
               </div>
-              <div style={{width: '100%', height: '100%'}}>
+              <div style={{width: '50%', height: '100%'}}>
                 <button className="comprarButton">Comprar</button>
               </div>
             </div>
