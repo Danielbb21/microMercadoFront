@@ -10,6 +10,7 @@ export const CartComponent = ( props ) => {
           <hr/>
         </div>
         <div style={{fontSize: '32px'}}>{props.quantidade}</div>
+        <div style={{fontSize: '32px'}}>{props.preco.toFixed(2).toString().replace('.', ',')}</div>
       </div>
     </>
   )
