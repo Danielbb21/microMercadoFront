@@ -17,6 +17,9 @@ const style = {
   p: 4,
 };
 
+
+
+
 export default function CompraModal(props) {
   const [quantidade, setQuantidade] = useState(1);
   const { carrinhoData, setCarrinhoData } = useCompra();
@@ -24,14 +27,30 @@ export default function CompraModal(props) {
 
   const handleClick = () => {
     setCarrinhoData((previus) => {
-      const antigo = [...previus, {
-        id: props.id,
-        titulo: props.titulo,
-        image: props.image,
-        preco: props.preco,
-        quantidade: quantidade
-      }];
-      return antigo;
+      let temId = [...previus].filter(function (f) {
+        return f.id === props.id;
+      });
+
+      if (temId.length > 0) {
+        let semId = [...previus].filter(function (f) {
+          return f.id !== props.id;
+        });
+        temId[0].quantidade += quantidade;
+        console.log('id', temId[0].quantidade);
+        semId.push(temId[0]);
+        return semId;
+      }
+      else {
+        const antigo = [...previus, {
+          id: props.id,
+          titulo: props.titulo,
+          image: props.image,
+          preco: props.preco,
+          quantidade: quantidade
+        }];
+        return antigo;
+      }
+
 
     });
     console.log('ok');

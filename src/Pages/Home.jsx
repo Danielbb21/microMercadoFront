@@ -7,7 +7,7 @@ import CompraModal from '../Components/CompraModal';
 
 const Data = [{
   id: 1,
-  image: Logo,
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtT_Okoy-bdhjWA9QPv1tXdtoRQd7P6rOXEg&usqp=CAU',
   name: 'teste',
   preco:'Por: R$150'
 },
