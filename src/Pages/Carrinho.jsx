@@ -36,9 +36,12 @@ export const Carrinho = ({ props }) => {
   let totalPrice = carrinhoData.map(c => {
     return +c.preco * c.quantidade;
   })
-  totalPrice = totalPrice.reduce(function (acumulador, valorAtual, index, array) {
-    return acumulador + valorAtual;
-  });
+  if(totalPrice.length> 0){
+    totalPrice = totalPrice.reduce(function (acumulador, valorAtual, index, array) {
+      return acumulador + valorAtual;
+    });
+  }
+ 
   return (
     <>
       <Navbar />
@@ -53,7 +56,7 @@ export const Carrinho = ({ props }) => {
       </div>
       <hr style={{ width: '75%' }} />
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {carrinhoData.map((e, index) => {
+        {carrinhoData.length > 0 ? carrinhoData.map((e, index) => {
           // if(e.length > 0){
 
           return (
@@ -62,10 +65,10 @@ export const Carrinho = ({ props }) => {
 
 
 
-        })}
+        }): <h3 style={{textAlign: 'center'}}>Nenhum elemento no carrinho</h3>}
       </div>
       <div style={{ textAlign: 'center', marginBottom: '3%' }}>
-        <p>Total: <strong> R$ {totalPrice.toFixed(2).toString().replace('.', ',')} </strong></p>
+        <p>Total: <strong>{carrinhoData.length> 0 ? `R$ ${totalPrice.toFixed(2).toString().replace('.', ',')}` : 'R$ 0,00'}  </strong></p>
         <button style={{ width: "15%", height: '50px', borderRadius: '30px', cursor: 'pointer', border: 'none', backgroundColor: '#FDFD96', fontSize: '18px', fontWeight: 'bold' }}>Comprar</button>
       </div>
     </>
