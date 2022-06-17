@@ -1,16 +1,18 @@
 
 
 export const CartComponent = ( props ) => {
+  console.log('props', props);
+  const number = new Number(props.preco);
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly',  marginBottom: '3%'}}>
         <div style={{display: 'flex', alignItems: 'center'}}>
           <img src={props.image} style={{ height: '100px' }} />
-          <div style={{marginLeft: '25%', fontSize: '32px'}}>{props.produto}</div>
+          <div style={{marginLeft: '25%', fontSize: '32px'}}>{props.titulo}</div>
           <hr/>
         </div>
         <div style={{fontSize: '32px'}}>{props.quantidade}</div>
-        <div style={{fontSize: '32px'}}>{props.preco.toFixed(2).toString().replace('.', ',')}</div>
+        <div style={{fontSize: '32px'}}>{number.toFixed(2).toString().replace('.', ',')}</div>
       </div>
     </>
   )

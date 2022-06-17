@@ -30,7 +30,7 @@ export const Products  = (props) => {
             </div>
           {/* </th> */}
           </div>
-      <CompraModal onOpen={open} id={id} handleClose={handleClose}/>
+      <CompraModal onOpen={open} id={props.id} handleClose={handleClose} preco={props.value.split('R$')[1]} titulo={props.name} image={props.logo}/>
 
           </>
     )
