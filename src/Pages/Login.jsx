@@ -25,7 +25,7 @@ export const Login = () => {
         
         setIsLoading(false);
         console.log('res.data', res.data);
-        toast.success("Conta criada", {
+        toast.success("Login feito com sucesso", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
