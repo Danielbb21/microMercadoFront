@@ -58,6 +58,7 @@ export const Carrinho = ({ props }) => {
     }
 
     const id = localStorage.getItem('id');
+    
     const obj = {
       clientId: id,
       produtos: products
@@ -71,7 +72,7 @@ export const Carrinho = ({ props }) => {
       produtos: products
     })
       .then(res => {
-        console.log('res', res.data);
+        console.log('resssssssss', res.data);
         setIsLoading(false);
         toast.success("Compra realizada com sucesso", {
           position: "top-right",

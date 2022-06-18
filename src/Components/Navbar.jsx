@@ -36,7 +36,11 @@ export const Navbar = () => {
           <img src={'https://www.pontofrio-imagens.com.br/App_Themes/PontoFrio/img/header/icon-perfil.png'} style={{ background: '#D3D3D3', padding: '15px', borderRadius: '25px', cursor: 'pointer' }} />
           <div class="dropdown-content">
             <a href="/login" style={{ fontSize: '16px' }}>Acesse sua conta</a>
-            <a href="/login" style={{ fontSize: '16px' }}>Meus pedidos</a>
+            <a href="/perfil" style={{ fontSize: '16px' }}>Meus pedidos</a>
+            <a href="/" style={{ fontSize: '16px' }} onClick={() => {
+              localStorage.removeItem('id');
+              localStorage.removeItem('isAdmin');
+            }}>sair</a>
             {/* <a href="#">Link 2</a>
             <a href="#">Link 3</a> */}
           </div>
