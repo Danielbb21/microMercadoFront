@@ -25,6 +25,11 @@ export const Login = () => {
         
         setIsLoading(false);
         console.log('res.data', res.data);
+        localStorage.removeItem('id');
+        localStorage.removeItem('isAdmin');
+        localStorage.setItem('id', res.data.id);
+        localStorage.setItem('isAdmin', res.data.admin);
+
         toast.success("Login feito com sucesso", {
           position: "top-right",
           autoClose: 2000,

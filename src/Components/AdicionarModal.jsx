@@ -3,8 +3,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
-
-
+import axios from 'axios';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingSpinner from '../Components/Loader';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -24,12 +27,42 @@ export const AdicionarModal = (props) => {
   const handleSubmit = (e) => {
     console.log('aqwiii', name, desc, qtd, preco, link);
     e.preventDefault();
-    setName('');
-    setPreco();
-    setQtd();
-    setDesc('');
-    setLink('');
-    props.handleClose();
+    axios.post('http://localhost:3005/produto', {
+      Nome: name,
+      descricao: desc,
+      preco: preco,
+      quantidade: qtd,
+      imagem: link
+    })
+      .then(res => {
+        console.log('res', res.data);
+        toast.success("Produto criado com sucesso", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+
+          progress: undefined,
+        });
+        setName('');
+        setPreco();
+        setQtd();
+        setDesc('');
+        setLink('');
+        props.handleClose();
+      })
+      .catch(err => {
+        console.log('err', err.message);
+        toast.error("Algo deu errado", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+
+          progress: undefined,
+        });
+      })
+
 
   }
 

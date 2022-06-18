@@ -18,7 +18,7 @@ export const Products  = (props) => {
             <div style={{display: 'flex', alignItems: 'center'}}>
               <div>
                 <div className="nameProduct">{props.name}</div>
-                <div className="priceProduct">{props.value} </div>
+                <p className="priceProduct">Valor: R${props.value.toFixed(2)} </p>
               </div>
               <div style={{width: '50%', height: '100%'}}>
                 <button className="comprarButton"onClick = {() => {
@@ -30,7 +30,7 @@ export const Products  = (props) => {
             </div>
           {/* </th> */}
           </div>
-      <CompraModal onOpen={open} id={props.id} handleClose={handleClose} preco={props.value.split('R$')[1]} titulo={props.name} image={props.logo}/>
+      <CompraModal onOpen={open} id={props.id} handleClose={handleClose} preco={props.value} titulo={props.name} image={props.logo}/>
 
           </>
     )

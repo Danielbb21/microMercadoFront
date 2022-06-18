@@ -1,78 +1,113 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from "../Components/Navbar";
 import Logo from '../Assets/MM.png'
 import '../Components/home.css';
 import { Products } from "../Components/Products";
 import CompraModal from '../Components/CompraModal';
+import axios from 'axios';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingSpinner from '../Components/Loader';
+import { useNavigate } from 'react-router-dom';
 
-const Data = [{
-  id: 1,
-  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtT_Okoy-bdhjWA9QPv1tXdtoRQd7P6rOXEg&usqp=CAU',
-  name: 'teste',
-  preco:'Por: R$150'
-},
-{
-  id: 2,
-  image: Logo,
-  name: 'teste',
-  preco:'Por: R$150'
-},
-{
-  id: 3,
-  image: Logo,
-  name: 'teste',
-  preco:'Por: R$150'
-},
-{
-  id: 4,
-  image: Logo,
-  name: 'teste',
-  preco:'Por: R$150'
-},
-{
-  id: 5,
-  image: Logo,
-  name: 'teste',
-  preco:'Por: R$150'
-},
-{
-  id: 8,
-  image: Logo,
-  name: 'teste',
-  preco:'Por: R$150'
-},
-{
-  id: 6,
-  image: Logo,
-  name: 'teste',
-  preco:'Por: R$150'
-},
-{
-  id: 7,
-  image: Logo,
-  name: 'teste',
-  preco:'Por: R$150'
-},
-]
+// const Data = [{
+//   id: 1,
+//   image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtT_Okoy-bdhjWA9QPv1tXdtoRQd7P6rOXEg&usqp=CAU',
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// {
+//   id: 2,
+//   image: Logo,
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// {
+//   id: 3,
+//   image: Logo,
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// {
+//   id: 4,
+//   image: Logo,
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// {
+//   id: 5,
+//   image: Logo,
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// {
+//   id: 8,
+//   image: Logo,
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// {
+//   id: 6,
+//   image: Logo,
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// {
+//   id: 7,
+//   image: Logo,
+//   name: 'teste',
+//   preco:'Por: R$150'
+// },
+// ]
+
+
 export const Home = () => {
-  
+  const [productData, setProductData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios.get('http://localhost:3005/produto')
+      .then(res => {
+        setIsLoading(false);
+        console.log('res.data', res.data);
+        setProductData(res.data);
+      })
+      .catch(err => {
+        setIsLoading(false);
+        console.log('err', err.message);
+        toast.error("Algo deu errado", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+
+          progress: undefined,
+        });
+      })
+  }, [])
   return (
     <>
-    <Navbar />
-      <br/>
-          <h1 style={{textAlign: 'center'}}>PRODUTOS</h1>
-          <hr style={{width: '50%'}}/>
-          <div style={{display: 'flex',  flexWrap: 'wrap', width: '80%', margin:'auto', justifyContent:'space-evenly'}}>
-          {Data.map(d => {
+      <Navbar />
+      <br />
+      <h1 style={{ textAlign: 'center' }}>PRODUTOS</h1>
+      <hr style={{ width: '50%' }} />
+      <div style={{ display: 'flex', flexWrap: 'wrap', width: '80%', margin: 'auto', justifyContent: 'space-evenly' }}>
+        {isLoading ? <LoadingSpinner /> :
+
+          productData.length > 0 ? productData.map(d => {
             return (
-                
-                <Products  logo = {d.image} name={d.name} value={d.preco} key = {d.id} id={d.id}/>
-              
+
+              <Products logo={d.imagem} name={d.Nome} value={+d.preco} key={d.id} id={d.id} />
+
             )
-          })}
-          </div>
-          
-        {/* </tr> */}
+          }) : <h3 style={{ textAlign: 'center' }}>Nenhum produto cadastrado</h3>
+
+        }
+
+      </div>
+
+      {/* </tr> */}
       {/* </table> */}
     </>
   );
