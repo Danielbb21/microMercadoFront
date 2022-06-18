@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from '../Components/Loader';
 import { useNavigate } from 'react-router-dom';
+import { useProduto, useUpdate } from '../Context/Compra';
 
 // const Data = [{
 //   id: 1,
@@ -62,11 +63,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const Home = () => {
-  const [productData, setProductData] = useState([]);
+  const { productData, setProductData } = useProduto();
   const [isLoading, setIsLoading] = useState(false);
-
+  const { isUpdate, setIsUpdate } = useUpdate();
   useEffect(() => {
     setIsLoading(true);
+    setIsUpdate(false);
     axios.get('http://localhost:3005/produto')
       .then(res => {
         setIsLoading(false);
@@ -85,7 +87,7 @@ export const Home = () => {
           progress: undefined,
         });
       })
-  }, [])
+  }, [isUpdate])
   return (
     <>
       <Navbar />

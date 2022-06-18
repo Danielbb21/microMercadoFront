@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from '../Components/Loader';
 import { useNavigate } from 'react-router-dom';
+import { useUpdate } from '../Context/Compra';
 
 const style = {
   position: 'absolute',
@@ -23,6 +24,7 @@ const style = {
 
 
 export const AdicionarModal = (props) => {
+  const {setIsUpdate} = useUpdate();
 
   const handleSubmit = (e) => {
     console.log('aqwiii', name, desc, qtd, preco, link);
@@ -36,6 +38,7 @@ export const AdicionarModal = (props) => {
     })
       .then(res => {
         console.log('res', res.data);
+        setIsUpdate(true);
         toast.success("Produto criado com sucesso", {
           position: "top-right",
           autoClose: 2000,
