@@ -5,9 +5,11 @@ import App from './App';
 import CompraProvider from './Context/Compra';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    
     <CompraProvider>
       <App />
     </CompraProvider>

@@ -7,7 +7,7 @@ export const Input = (props) => {
       style={{borderRadius: props.ok ? '30px' : ''}}
         type={props.type}
         onChange={props.onChange}
-        value={props.value} />
+        value={props.value} required/>
     </>
   );
 }
