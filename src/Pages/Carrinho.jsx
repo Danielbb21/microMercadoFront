@@ -57,18 +57,19 @@ export const Carrinho = ({ props }) => {
       products.push({ produtoId: id, quantidade: qtd });
     }
 
-    const id = localStorage.getItem('id');
-    
+
+
     const obj = {
-      clientId: id,
       produtos: products
     };
 
     console.log('obj', obj);
     setIsLoading(true);
+    const id = localStorage.getItem('id');
+    console.log("id", id);
 
     axios.post('http://localhost:3003/carrinho', {
-      clientId: id,
+      clienteId: id,
       produtos: products
     })
       .then(res => {
