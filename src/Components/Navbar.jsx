@@ -28,9 +28,9 @@ export const Navbar = () => {
   }
 
   useEffect(() => {
-      if(setIsSumited && nomeProd === ''){
-        setIsSumited(false);
-        axios.get(`http://localhost:3005/produto?nome=${nomeProd}`)
+    if (setIsSumited && nomeProd === '') {
+      setIsSumited(false);
+      axios.get(`http://localhost:3005/produto?nome=${nomeProd}`)
         .then(res => {
           console.log('data', res.data);
           setProductData(res.data);
@@ -38,7 +38,7 @@ export const Navbar = () => {
         .catch(err => {
           console.log('err', err.message);
         })
-      }
+    }
   }, [nomeProd])
   const navigate = useNavigate();
   const { carrinhoData } = useCompra();
@@ -48,6 +48,9 @@ export const Navbar = () => {
   const handleClose = () => {
     setOpen(false);
   }
+  const id = localStorage.getItem('id');
+  const isAdmin = localStorage.getItem('isAdmin');
+  console.log('isAdmin', isAdmin);
 
   return (
     <>
@@ -64,12 +67,13 @@ export const Navbar = () => {
         <div className='dropdown' style={{ display: 'flex', alignItems: 'center' }}>
           <img src={'https://www.pontofrio-imagens.com.br/App_Themes/PontoFrio/img/header/icon-perfil.png'} style={{ background: '#D3D3D3', padding: '15px', borderRadius: '25px', cursor: 'pointer' }} />
           <div class="dropdown-content">
-            <a href="/login" style={{ fontSize: '16px' }}>Acesse sua conta</a>
-            <a href="/perfil" style={{ fontSize: '16px' }}>Meus pedidos</a>
-            <a href="/" style={{ fontSize: '16px' }} onClick={() => {
+            {!id && <a href="/login" style={{ fontSize: '16px' }}>Acesse sua conta</a>}
+            <a href={id ? "/perfil" : "/login"} style={{ fontSize: '16px' }}>Meus pedidos</a>
+            {id && <a href="/" style={{ fontSize: '16px' }} onClick={() => {
               localStorage.removeItem('id');
               localStorage.removeItem('isAdmin');
-            }}>sair</a>
+            }}>sair</a>}
+
             {/* <a href="#">Link 2</a>
             <a href="#">Link 3</a> */}
           </div>
@@ -84,9 +88,10 @@ export const Navbar = () => {
           {/* <button type="button" className='nav-button-sec'>Carrinho</button> */}
           <div style={{ color: 'white', marginLeft: '15px', fontSize: '24px' }}>Carrinho</div>
         </div>
-        <button onClick={() => {
+        {isAdmin === 'true' && id && <button onClick={() => {
           setOpen(true);
-        }} className='nav-add-button'>ADICIONAR PRODUTO</button>
+        }} className='nav-add-button'>ADICIONAR PRODUTO</button>}
+
       </div>
       <div className='nav-empty-space'>
         asda
