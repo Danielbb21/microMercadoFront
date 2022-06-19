@@ -50,8 +50,12 @@ export const Navbar = () => {
   }
   const id = localStorage.getItem('id');
   const isAdmin = localStorage.getItem('isAdmin');
-  console.log('isAdmin', isAdmin);
+  const nome = localStorage.getItem('nome');
+  console.log('nome', id && nome !== '' ? nome : 'perfil');
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
     <>
       <div className='navWrapper'>
@@ -72,12 +76,13 @@ export const Navbar = () => {
             {id && <a href="/" style={{ fontSize: '16px' }} onClick={() => {
               localStorage.removeItem('id');
               localStorage.removeItem('isAdmin');
+              localStorage.removeItem('nome');
             }}>sair</a>}
 
             {/* <a href="#">Link 2</a>
             <a href="#">Link 3</a> */}
           </div>
-          <div style={{ color: 'white', marginLeft: '15px', fontSize: '24px' }}>Perfil</div>
+          <div style={{ color: 'white', marginLeft: '15px', fontSize: '24px' }}>{id && nome !== '' ? capitalizeFirstLetter(nome) : 'Perfil'}</div>
 
         </div>
 
