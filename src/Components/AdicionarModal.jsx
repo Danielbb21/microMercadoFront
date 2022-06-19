@@ -29,7 +29,7 @@ export const AdicionarModal = (props) => {
   const handleSubmit = (e) => {
     console.log('aqwiii', name, desc, qtd, preco, link);
     e.preventDefault();
-    axios.post('http://localhost:3005/produto', {
+    axios.post('http://localhost:3003/produto', {
       Nome: name,
       descricao: desc,
       preco: preco,

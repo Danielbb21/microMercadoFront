@@ -69,7 +69,7 @@ export const Home = () => {
   useEffect(() => {
     setIsLoading(true);
     setIsUpdate(false);
-    axios.get('http://localhost:3005/produto')
+    axios.get('http://localhost:3003/produto')
       .then(res => {
         setIsLoading(false);
         console.log('res.data', res.data);

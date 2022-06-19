@@ -12,12 +12,12 @@ export const Navbar = () => {
 
   const [nomeProd, setNomeProd] = useState('');
   const { setProductData } = useProduto();
-  const [ísSubmited, setIsSumited] = useState(false);
+  const [isSubmited, setIsSumited] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSumited(true);
-    axios.get(`http://localhost:3005/produto?nome=${nomeProd}`)
+    axios.get(`http://localhost:3003/produto?nome=${nomeProd}`)
       .then(res => {
         console.log('data', res.data);
         setProductData(res.data);
@@ -28,9 +28,9 @@ export const Navbar = () => {
   }
 
   useEffect(() => {
-    if (setIsSumited && nomeProd === '') {
+    if (isSubmited && nomeProd === '') {
       setIsSumited(false);
-      axios.get(`http://localhost:3005/produto?nome=${nomeProd}`)
+      axios.get(`http://localhost:3003/produto?nome=${nomeProd}`)
         .then(res => {
           console.log('data', res.data);
           setProductData(res.data);
