@@ -21,11 +21,12 @@ export const Products  = (props) => {
                 <p className="priceProduct">Valor: R${props.value.toFixed(2)} </p>
               </div>
               <div style={{width: '50%', height: '100%'}}>
-                <button className="comprarButton"onClick = {() => {
+                {props.quantidade > 0 ? <button className="comprarButton"onClick = {() => {
                   console.log('clisk');
                   setOpen(true);
                   setId(props.id)
-                }}>Comprar</button>
+                }}>Comprar</button> : <p>Esgotado</p>}
+                
               </div>
             </div>
           {/* </th> */}

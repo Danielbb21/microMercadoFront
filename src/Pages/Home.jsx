@@ -100,7 +100,7 @@ export const Home = () => {
           productData.length > 0 ? productData.map(d => {
             return (
 
-              <Products logo={d.imagem} name={d.Nome} value={+d.preco} key={d.id} id={d.id} />
+              <Products quantidade={d.quantidade} logo={d.imagem} name={d.Nome} value={+d.preco} key={d.id} id={d.id} />
 
             )
           }) : <h3 style={{ textAlign: 'center' }}>Nenhum produto cadastrado</h3>
