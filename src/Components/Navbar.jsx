@@ -3,14 +3,43 @@ import './navbar.css';
 import Cart from '../Assets/shopping_cart_icon-removebg-preview.png';
 import { Input } from './Input';
 import { useNavigate } from 'react-router-dom';
-import { useCompra } from '../Context/Compra';
-import { useState } from 'react';
+import { useCompra, useProduto } from '../Context/Compra';
+import { useState, useEffect } from 'react';
 import { AdicionarModal } from './AdicionarModal';
+import axios from 'axios';
 
 export const Navbar = () => {
+
+  const [nomeProd, setNomeProd] = useState('');
+  const { setProductData } = useProduto();
+  const [ísSubmited, setIsSumited] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSumited(true);
+    axios.get(`http://localhost:3005/produto?nome=${nomeProd}`)
+      .then(res => {
+        console.log('data', res.data);
+        setProductData(res.data);
+      })
+      .catch(err => {
+        console.log('err', err.message);
+      })
   }
+
+  useEffect(() => {
+      if(setIsSumited && nomeProd === ''){
+        setIsSumited(false);
+        axios.get(`http://localhost:3005/produto?nome=${nomeProd}`)
+        .then(res => {
+          console.log('data', res.data);
+          setProductData(res.data);
+        })
+        .catch(err => {
+          console.log('err', err.message);
+        })
+      }
+  }, [nomeProd])
   const navigate = useNavigate();
   const { carrinhoData } = useCompra();
 
@@ -29,7 +58,7 @@ export const Navbar = () => {
           <div style={{ color: 'white', marginLeft: '15px', fontWeight: 'bold', fontSize: '32px' }}>Micro Mercado</div>
         </div>
         <form style={{ height: '50%', width: '30%', display: 'flex' }} onSubmit={handleSubmit}>
-          <Input type="text" text='Pesquise por produtos' ok={true} />
+          <Input type="text" text='Pesquise por produtos' ok={true} value={nomeProd} onChange={(e) => setNomeProd(e.target.value)} />
           <button type="submit" className='nav-button'>OK</button>
         </form>
         <div className='dropdown' style={{ display: 'flex', alignItems: 'center' }}>
@@ -57,7 +86,7 @@ export const Navbar = () => {
         </div>
         <button onClick={() => {
           setOpen(true);
-        }} className = 'nav-add-button'>ADICIONAR PRODUTO</button>
+        }} className='nav-add-button'>ADICIONAR PRODUTO</button>
       </div>
       <div className='nav-empty-space'>
         asda
